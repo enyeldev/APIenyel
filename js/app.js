@@ -39,6 +39,7 @@ const apiKey = '2a16b19a0c243d2a608896c04b59f527';
 document.addEventListener('DOMContentLoaded', () => {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     formulario.addEventListener('submit', obtenerCiudad);
+    inputCiudad.addEventListener('blur', obtenerCiudad)
 
 })
 
@@ -68,18 +69,17 @@ function errorCallback(error) {
 
 function obtenerCiudad(e) {
     e.preventDefault();
-    const hijoInput = e.target.firstElementChild;
 
-    if (!hijoInput.value) {
+    if (!inputCiudad.value) {
         inputContainerCiudad.classList.add('input-ciudad-container_error');
 
         setTimeout(() => {
             inputContainerCiudad.classList.remove('input-ciudad-container_error');
         }, 3000);
     } else {
-        const formattedValue = hijoInput.value.replace(/[^A-Za-zñáéíóúüÜÁÉÍÓÚ ]/g, '');
-        hijoInput.value = formattedValue;
-        const inputValue = hijoInput.value;
+        const formattedValue = inputCiudad.value.replace(/[^A-Za-zñáéíóúüÜÁÉÍÓÚ ]/g, '');
+        inputCiudad.value = formattedValue;
+        const inputValue = inputCiudad.value;
 
         llamarAPI(inputValue);
     }
@@ -102,7 +102,9 @@ function llamarAPI(ciudad) {
             llamarApiClima(lat, lon, nombre, estado)
         })
         .catch(error => {
+            loading.classList.remove('oculto');
             if (error) {
+                loading.classList.add('oculto');
                 erroDeBusqueda();
             }
         })

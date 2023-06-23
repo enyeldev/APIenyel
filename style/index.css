@@ -58,9 +58,14 @@ body {
   font-size: 0.9em;
 }
 
+.btn-buscar {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 .formulario {
   display: flex;
-  flex-direction: row-reverse;
   align-items: center;
   gap: 1em;
 }
@@ -192,6 +197,39 @@ body {
   font-size: 1.5em;
   /* font-weight: 500; */
   cursor: pointer;
+}
+
+.celsius {
+  position: relative;
+}
+.celsius:hover::after {
+  content: 'Celsius';
+  display: block;
+  /* width: 200px; */
+  position: absolute;
+  font-size: .6em;
+  background: #42424131;
+  padding: 1em;
+  top: 2.5em;
+  left: -1.4em;
+  border-radius: 10px;
+}
+
+
+.faren {
+  position: relative;
+}
+.faren:hover::after {
+  content: 'Farenheit';
+  display: block;
+  /* width: 200px; */
+  position: absolute;
+  font-size: .6em;
+  background: #42424131;
+  padding: 1em;
+  top: 2.5em;
+  left: -2em;
+  border-radius: 10px;
 }
 
 /* HEADER */
